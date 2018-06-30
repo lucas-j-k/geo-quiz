@@ -6,6 +6,7 @@ import axios from 'axios';
 //Components:
 import Quiz from './components/Quiz';
 import StartScreen from './components/StartScreen';
+import HeaderBar from './components/HeaderBar';
 
 class App extends React.Component {
   //Set state inside constructor:
@@ -84,6 +85,7 @@ class App extends React.Component {
         />);
     return (
       <div className="container">
+        <HeaderBar />
         {content}
       </div>
     );

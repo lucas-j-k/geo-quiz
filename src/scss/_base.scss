@@ -3,6 +3,7 @@
 
 * {
   font-family: $font;
+  box-sizing: border-box;
 }
 
 body {
@@ -10,8 +11,7 @@ body {
 }
 
 .container {
-  width: 100%;
-  padding-top:em(15);
+  max-width: 100%;
 }
 
 .question {
@@ -133,5 +133,32 @@ body {
     color: $secondary-10;
     background-color: $secondary-60;
     border:0;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width:100%;
+  padding: em(15);
+  background-color: $primary-80;
+  color: $primary-30;
+  margin-bottom: em(25);
+  &__menu {
+    margin: 0 em(10);
+  }
+  &__restart {
+    border: 0;
+    padding: em(5);
+    background-color: $primary-50;
+    color: $primary-10;
+  }
+}
+
+@include portrait-tablet {
+  .question, .startScreen {
+    width:60%;
+    margin-top: em(25);
   }
 }
