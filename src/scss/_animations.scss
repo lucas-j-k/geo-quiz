@@ -12,6 +12,6 @@
 
 @keyframes scoreBump {
   0%   {background-color: $primary-50;}
-  80%  {background-color: $secondary-50;}
+  50%  {background-color: $secondary-50;}
   100% {background-color: $primary-50;}
 }

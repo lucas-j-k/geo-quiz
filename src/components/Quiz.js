@@ -18,13 +18,15 @@ class Quiz extends Component {
       correctAnswers:0,
       incorrectAnswers:0,
       correctClass:"scoreboard__correct",
-      incorrectClass:"scoreboard__incorrect"
+      incorrectClass:"scoreboard__incorrect",
+      disableFormSubmit: true
     }
   }
   componentWillReceiveProps(){
     this.setState({
       checkedAnswer:"",
       answered:false,
+      disableFormSubmit: true,
       correctClass:"scoreboard__correct",
       incorrectClass:"scoreboard__incorrect"
     })
@@ -54,7 +56,8 @@ class Quiz extends Component {
   }
   handleAnswerChange(event){
     this.setState({
-      checkedAnswer:event.target.value
+      checkedAnswer:event.target.value,
+      disableFormSubmit: false
     })
   }
   render(){
@@ -67,7 +70,7 @@ class Quiz extends Component {
         ("");
     let submit = this.state.answered?
         (""):
-        (<input className="question__button, button question__input--submit" type="submit" value="Submit" />);
+        (<input className="question__button, button question__input--submit" type="submit" value="Submit" disabled={this.state.disableFormSubmit} />);
     let questionList = this.props.answers.map((answer, index)=>{
       return <Answer
                answer={answer}

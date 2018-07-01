@@ -460,7 +460,7 @@ body {
 @keyframes scoreBump {
   0% {
     background-color: #36635a; }
-  80% {
+  50% {
     background-color: #dc8f09; }
   100% {
     background-color: #36635a; } }
