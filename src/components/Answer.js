@@ -12,6 +12,7 @@ const Answer = (props)=>{
         checked={props.checkedAnswer === props.answer}
         id={"answer-" + props.answer}
         onChange={props.handleAnswerChange}
+        disabled={props.disabled}
       />
       {props.answer}
     </label>

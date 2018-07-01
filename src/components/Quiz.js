@@ -23,10 +23,6 @@ class Quiz extends Component {
   }
   handleFormSubmit(event){
     event.preventDefault();
-    // let newState = {
-    //   correct:false,
-    //   answered:true,
-    // }
     if(this.state.checkedAnswer === this.props.correct){
       this.setState(function(prevState, props){
         return {
@@ -62,22 +58,26 @@ class Quiz extends Component {
     let submit = this.state.answered?
         (""):
         (<input className="question__button, button question__input--submit" type="submit" value="Submit" />);
+    let resultMessage = this.state.correct ? "Congratulations the answer was..." : "Unfortunately, the answer was...";
+    let overlayClass = this.state.answered ? "question__overlay question__overlay--show" : "question__overlay question__overlay--hide";
     let questionList = this.props.answers.map((answer, index)=>{
-    return <Answer
-             answer={answer}
-             key={index}
-             checkedAnswer={this.state.checkedAnswer}
-             handleAnswerChange={this.handleAnswerChange}
-           />
-  })
+      return <Answer
+               answer={answer}
+               key={index}
+               checkedAnswer={this.state.checkedAnswer}
+               handleAnswerChange={this.handleAnswerChange}
+               disabled={this.state.answered}
+             />
+    })
     return (
-      <div className="question box-shadow">
+      <div className="question">
         <Scoreboard
               correctAnswers={this.state.correctAnswers}
               incorrectAnswers={this.state.incorrectAnswers}
             />
         <h3 className="question__header">{this.props.country}</h3>
         <form className="question__form" onSubmit={this.handleFormSubmit}>
+          <div className={overlayClass}>{resultMessage}{this.props.correct}</div>
           {questionList}
           {submit}
         </form>

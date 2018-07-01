@@ -8,7 +8,7 @@ function HeaderBar(props){
       <div className="header">
         <div className="header__brand">Capital Cities</div>
         <div className="header__menu">
-          <button className="header__restart">Restart</button>
+          <a href="../" className="header__restart">Restart</a>
         </div>
       </div>
     )
