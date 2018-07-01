@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 //components
 import Scoreboard from './Scoreboard';
 import Answer from './Answer';
+import ResultOverlay from './ResultOverlay';
 
 
 class Quiz extends Component {
@@ -15,11 +16,19 @@ class Quiz extends Component {
       answered:false,
       correct:false,
       correctAnswers:0,
-      incorrectAnswers:0
+      incorrectAnswers:0,
+      correctClass:"scoreboard__correct",
+      incorrectClass:"scoreboard__incorrect"
     }
   }
   componentWillReceiveProps(){
-    this.setState({checkedAnswer:"", answered:false})
+    this.setState({
+      checkedAnswer:"",
+      answered:false,
+      correctClass:"scoreboard__correct",
+      incorrectClass:"scoreboard__incorrect"
+    })
+    console.log("Will receive props")
   }
   handleFormSubmit(event){
     event.preventDefault();
@@ -29,6 +38,7 @@ class Quiz extends Component {
           correct:true,
           answered:true,
           correctAnswers:prevState.correctAnswers +1,
+          correctClass:"scoreboard__correct score-bump",
         }
       })
     } else {
@@ -37,10 +47,10 @@ class Quiz extends Component {
           correct:false,
           answered:true,
           incorrectAnswers:prevState.incorrectAnswers +1,
+          incorrectClass:"scoreboard__incorrect score-bump",
         }
       })
     }
-    console.log(this.state);
   }
   handleAnswerChange(event){
     this.setState({
@@ -58,8 +68,6 @@ class Quiz extends Component {
     let submit = this.state.answered?
         (""):
         (<input className="question__button, button question__input--submit" type="submit" value="Submit" />);
-    let resultMessage = this.state.correct ? "Congratulations the answer was..." : "Unfortunately, the answer was...";
-    let overlayClass = this.state.answered ? "question__overlay question__overlay--show" : "question__overlay question__overlay--hide";
     let questionList = this.props.answers.map((answer, index)=>{
       return <Answer
                answer={answer}
@@ -74,10 +82,13 @@ class Quiz extends Component {
         <Scoreboard
               correctAnswers={this.state.correctAnswers}
               incorrectAnswers={this.state.incorrectAnswers}
+              correct={this.state.correct}
+              correctClass={this.state.correctClass}
+              incorrectClass={this.state.incorrectClass}
             />
         <h3 className="question__header">{this.props.country}</h3>
         <form className="question__form" onSubmit={this.handleFormSubmit}>
-          <div className={overlayClass}>{resultMessage}{this.props.correct}</div>
+          <ResultOverlay correct={this.state.correct} answer={this.props.correct} answered={this.state.answered} />
           {questionList}
           {submit}
         </form>

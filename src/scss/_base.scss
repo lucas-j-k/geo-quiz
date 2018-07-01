@@ -92,15 +92,24 @@ body {
     position: absolute;
     z-index: 500;
     padding: em(20);
-    text-align: center;
     background-color: $primary-90;
-    color: $primary-50;
     &--show {
       display:block;
     }
     &--hide {
       display:none;
     }
+  }
+  &__result-message {
+    color: $primary-40;
+    font-size: em(18);
+    text-align: center;
+  }
+  &__result-answer {
+    color: $secondary-30;
+    font-size: em(24);
+    font-weight: bold;
+    text-align: center;
   }
 }
 

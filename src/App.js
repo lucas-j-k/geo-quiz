@@ -33,7 +33,6 @@ class App extends React.Component {
       });
     })
   }
-
   //Start the quiz by setting the running state to true
   startQuiz(){
     this.nextQuestion()
@@ -64,9 +63,10 @@ class App extends React.Component {
         country:this.state.countryData[questionIndex].name,
         answers:answers,
         running:true,
-        correct:this.state.countryData[questionIndex].capital
+        correct:this.state.countryData[questionIndex].capital,
+        correctClass:"scoreboard__correct",
+        incorrectClass:"scoreboard__correct"
       },
-
     });
   }
   //Render the main component to the DOM:
@@ -78,6 +78,9 @@ class App extends React.Component {
             answers={this.state.currentQuestion.answers}
             correct={this.state.currentQuestion.correct}
             nextQuestion={this.nextQuestion}
+            correctClass={this.state.correctClass}
+            incorrectClass={this.state.incorrectClass}
+            animateScoreboard={this.animateScoreboard}
           />
         ):
         (<StartScreen

@@ -369,13 +369,20 @@ body {
     position: absolute;
     z-index: 500;
     padding: 1.25em;
-    text-align: center;
-    background-color: #0b1412;
-    color: #36635a; }
+    background-color: #0b1412; }
     .question__overlay--show {
       display: block; }
     .question__overlay--hide {
       display: none; }
+  .question__result-message {
+    color: #5e827b;
+    font-size: 1.125em;
+    text-align: center; }
+  .question__result-answer {
+    color: #eabc6b;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center; }
 
 .scoreboard {
   display: flex;
@@ -445,3 +452,15 @@ body {
   .question, .startScreen {
     width: 30%;
     margin-top: 1.5625em; } }
+
+.score-bump {
+  animation-name: scoreBump;
+  animation-duration: 1s; }
+
+@keyframes scoreBump {
+  0% {
+    background-color: #36635a; }
+  80% {
+    background-color: #dc8f09; }
+  100% {
+    background-color: #36635a; } }
